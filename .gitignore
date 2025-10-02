@@ -1,0 +1,93 @@
+# Unity generated directories
+Library/
+Temp/
+Obj/
+Logs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+CrashReports/
+Build/
+Builds/
+Artifacts/
+DerivedDataCache/
+
+# Unity Cloud Diagnostics / Collaborate
+Sysinfo.txt
+*.collab
+
+# Asset import artifacts
+*.pidb
+*.mdb
+*.pdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.mdb.meta
+*.pdb.meta
+
+# Rider / Visual Studio / JetBrains
+.vs/
+.idea/
+*.sln
+*.csproj
+*.unityproj
+*.tmp
+*.svd
+*.user
+*.userprefs
+*.booproj
+*.suo
+*.xproj
+*.dotCover
+*.resharper
+*.DotSettings
+*.DotSettings.user
+
+# VS Code
+.vscode/
+.history/
+
+# Gradle / Android
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+gradle-wrapper.jar
+*/.gradle/
+
+# Xcode / iOS build outputs
+*.xcworkspace
+*.xcuserdata/
+*.xcodeproj/
+*.pbxproj
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+DerivedData/
+
+# Build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.ipa
+
+# Crash and profiler data
+*.stacktrace
+*.dSYM/
+
+# Addressables / cache directories generated at runtime
+Assets/AddressableAssetsData/*/*.bin
+Assets/StreamingAssets/aa/
+
+# Local environment & tooling
+.DS_Store
+Thumbs.db
+*.orig
+.env*
+node_modules/
+
+# Meta XR / WebRTC interim outputs
+Assets/Plugins/Android/libs/
+
+
