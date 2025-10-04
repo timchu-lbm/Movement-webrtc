@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Samples/Meta XR Movement SDK/78.0.0/Advanced Samples/Scenes/MovementISDKIntegration.unity
     guid: 9cb00fe8f666bf849a5371383563d289
+  - enabled: 0
+    path: Assets/RBY/Skeleton.unity
+    guid: 6ec8a3f599ecfa74cba0d5c6792b14ef
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 15cd5838db78a4c6fbc99c2f7814aaec, type: 2}

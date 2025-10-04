@@ -48,8 +48,12 @@ Sysinfo.txt
 .vscode/
 .history/
 
-# Gradle / Android build cache
+# Gradle / Android
 .gradle/
+gradle/
+gradlew
+gradlew.bat
+gradle-wrapper.jar
 */.gradle/
 
 # Xcode / iOS build outputs
@@ -83,4 +87,7 @@ Thumbs.db
 .env*
 node_modules/
 
-# Meta XR / WebRTC interim outputs (keep actual plugin binaries tracked)
+# Meta XR / WebRTC interim outputs
+Assets/Plugins/Android/libs/
+
+
