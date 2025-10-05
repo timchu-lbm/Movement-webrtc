@@ -22750,6 +22750,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 10510251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853628752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3960156883710015048, guid: a9e96029b54b7f54bb83fd8891edb71b, type: 3}
+  m_PrefabInstance: {fileID: 472620137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee8a8fdf05d35d4992f87a9ca7381a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1855072246
 GameObject:
   m_ObjectHideFlags: 0
@@ -23551,11 +23562,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArmIKController
   leftArmIK: {fileID: 779436350}
   rightArmIK: {fileID: 1618604100}
+  baseIK: {fileID: 1853628752}
   leftController: {fileID: 824821344}
   rightController: {fileID: 1160945558}
   bodyProvider: {fileID: 993634454}
   leftElbowJointId: 11
   rightElbowJointId: 16
+  baseTargetJointId: 1
   setArmJointCountTo3: 1
 --- !u!1 &1955888341
 GameObject:

@@ -6,6 +6,7 @@ public class ArmIKController : MonoBehaviour
     [Header("IK Components")]
     [SerializeField] private EasyIK leftArmIK;
     [SerializeField] private EasyIK rightArmIK;
+    [SerializeField] private EasyIK baseIK;
 
     [Header("Controller Transforms")]
     [SerializeField] private Transform leftController;
@@ -18,6 +19,8 @@ public class ArmIKController : MonoBehaviour
     [SerializeField] private BodyJointId leftElbowJointId;
     [Tooltip("Select the RIGHT elbow joint id from your SDK version (e.g., RightElbow / RightLowerArm)")]
     [SerializeField] private BodyJointId rightElbowJointId;
+    [Tooltip("Select the BASE joint id from your SDK version (e.g., Hips / Pelvis / Chest)")]
+    [SerializeField] private BodyJointId baseTargetJointId;
 
     [Header("Options")]
     [SerializeField] private bool setArmJointCountTo3 = true;
@@ -74,7 +77,20 @@ public class ArmIKController : MonoBehaviour
                     rightArmIK.poleTarget.position = posWorld;
                 }
             }
+
+            if (baseIK != null && baseIK.ikTarget != null)
+            {
+                int iBase = (int)baseTargetJointId;
+                if (iBase >= 0 && iBase < joints.Length)
+                {
+                    var p = joints[iBase].Pose.Position;
+                    Vector3 posLocal = new Vector3(p.x, p.y, -p.z);
+                    Vector3 posWorld = bodyProvider.transform.TransformPoint(posLocal);
+                    baseIK.ikTarget.position = posWorld;
+                }
+            }
         }
+
     }
 }
 
