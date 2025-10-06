@@ -5500,6 +5500,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1949073451279585541, guid: a9e96029b54b7f54bb83fd8891edb71b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949073451279585541, guid: a9e96029b54b7f54bb83fd8891edb71b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -95.459
+      objectReference: {fileID: 0}
     - target: {fileID: 3195756869591473535, guid: a9e96029b54b7f54bb83fd8891edb71b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.009
@@ -19515,6 +19523,11 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.009499997, y: 0.01770607, z: -0.0011095628}
     m_Extent: {x: 0.04527676, y: 0.05372102, z: 0.06648618}
   m_DirtyAABB: 0
+--- !u!4 &1544979031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1949073451279585541, guid: a9e96029b54b7f54bb83fd8891edb71b, type: 3}
+  m_PrefabInstance: {fileID: 472620137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1548645551
 GameObject:
   m_ObjectHideFlags: 0
@@ -23749,6 +23762,8 @@ MonoBehaviour:
   leftElbowJointId: 11
   rightElbowJointId: 16
   baseTargetJointId: 1
+  chestTransform: {fileID: 1544979031}
+  chestJointId: 5
   setArmJointCountTo3: 1
 --- !u!1 &1955888341
 GameObject:

@@ -22,6 +22,12 @@ public class ArmIKController : MonoBehaviour
     [Tooltip("Select the BASE joint id from your SDK version (e.g., Hips / Pelvis / Chest)")]
     [SerializeField] private BodyJointId baseTargetJointId;
 
+    [Header("Chest tracking")]
+    [Tooltip("Assign the Chest GameObject to follow the tracked chest pose.")]
+    [SerializeField] private Transform chestTransform;
+    [Tooltip("Select the chest joint id from your SDK version (e.g., Chest / UpperChest)")]
+    [SerializeField] private BodyJointId chestJointId;
+
     [Header("Options")]
     [SerializeField] private bool setArmJointCountTo3 = true;
 
@@ -87,6 +93,28 @@ public class ArmIKController : MonoBehaviour
                     Vector3 posLocal = new Vector3(p.x, p.y, -p.z);
                     Vector3 posWorld = bodyProvider.transform.TransformPoint(posLocal);
                     baseIK.ikTarget.position = posWorld;
+                }
+            }
+
+            // Chest pose follow (position + orientation)
+            if (chestTransform != null)
+            {
+                int iChest = (int)chestJointId;
+                if (iChest >= 0 && iChest < joints.Length)
+                {
+                    var pose = joints[iChest].Pose;
+
+                    // Position: flip Z then transform from OVRBody local to world
+                    var pChest = pose.Position;
+                    Vector3 chestLocalPos = new Vector3(pChest.x, pChest.y, -pChest.z);
+                    Vector3 chestWorldPos = bodyProvider.transform.TransformPoint(chestLocalPos);
+
+                    // Orientation: convert from OVR (RH) to Unity (LH) by mirroring Z axis
+                    var qChest = pose.Orientation;
+                    Quaternion chestLocalRot = new Quaternion(-qChest.x, -qChest.y, qChest.z, qChest.w);
+                    Quaternion chestWorldRot = bodyProvider.transform.rotation * chestLocalRot;
+
+                    chestTransform.SetPositionAndRotation(chestWorldPos, chestWorldRot);
                 }
             }
         }
