@@ -28,11 +28,45 @@ public class ControllerStatusPanel : MonoBehaviour
         if (outputText == null) return;
 
         var sb = new StringBuilder(1024);
+        AppendCameraRigStatus(sb);
+        sb.Append('\n');
         AppendControllerStatus(sb, "Left Controller", XRNode.LeftHand);
         sb.Append('\n');
         AppendControllerStatus(sb, "Right Controller", XRNode.RightHand);
 
         outputText.text = sb.ToString();
+    }
+
+    private void AppendCameraRigStatus(StringBuilder sb)
+    {
+        var head = InputDevices.GetDeviceAtXRNode(XRNode.Head);
+        sb.Append("Camera Rig");
+        sb.Append(':');
+        sb.Append('\n');
+
+        if (!head.isValid)
+        {
+            sb.Append("  status: not found");
+            sb.Append('\n');
+            return;
+        }
+
+        if (head.TryGetFeatureValue(CommonUsages.isTracked, out bool isTracked))
+        {
+            sb.Append("  tracked: ");
+            sb.Append(isTracked ? "true" : "false");
+            sb.Append('\n');
+        }
+
+        if (head.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 pos))
+        {
+            sb.AppendFormat("  pos: x={0:F3}, y={1:F3}, z={2:F3}\n", pos.x, pos.y, pos.z);
+        }
+
+        if (head.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rot))
+        {
+            sb.AppendFormat("  rot(quat): x={0:F3}, y={1:F3}, z={2:F3}, w={3:F3}\n", rot.x, rot.y, rot.z, rot.w);
+        }
     }
 
     private void AppendControllerStatus(StringBuilder sb, string label, XRNode node)

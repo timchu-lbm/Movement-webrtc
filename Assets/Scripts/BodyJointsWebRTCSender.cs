@@ -19,8 +19,7 @@ public class BodyJointsWebRTCSender : MonoBehaviour
     [Tooltip("Frames per second to send; <= 0 sends every frame (fastest)")]
     public int sendFps = 0;
 
-    [Tooltip("Peak random noise amplitude added to each coordinate per frame")]
-    public float noiseAmplitude = 0.01f;
+	
 
     [Tooltip("Automatically start sending on Start()")]
     public bool autoStart = true;
@@ -40,6 +39,11 @@ public class BodyJointsWebRTCSender : MonoBehaviour
 
 	[Tooltip("Include controller status section in JSON payload")] 
 	public bool includeControllerStatus = true;
+
+	[Tooltip("Include camera rig transform in JSON payload")] 
+	public bool includeCameraRig = true;
+
+
 
     private RTCPeerConnection _peerConnection;
     private RTCDataChannel _dataChannel;
@@ -485,6 +489,15 @@ public class BodyJointsWebRTCSender : MonoBehaviour
 			}
 		}
 
+		if (includeCameraRig)
+		{
+			var rig = BuildCameraRigMap();
+			if (rig != null)
+			{
+				payload["camera_rig"] = rig;
+			}
+		}
+
 		return JsonConvert.SerializeObject(payload);
 	}
 
@@ -595,6 +608,31 @@ public class BodyJointsWebRTCSender : MonoBehaviour
 		if (device.TryGetFeatureValue(CommonUsages.menuButton, out bool menuBtn))
 		{
 			obj["menuButton"] = menuBtn;
+		}
+		return obj;
+	}
+
+	private Dictionary<string, object> BuildCameraRigMap()
+	{
+		var obj = new Dictionary<string, object>(8);
+		var head = InputDevices.GetDeviceAtXRNode(XRNode.Head);
+		if (!head.isValid)
+		{
+			obj["valid"] = false;
+			return obj;
+		}
+		obj["valid"] = true;
+		if (head.TryGetFeatureValue(CommonUsages.isTracked, out bool isTracked))
+		{
+			obj["tracked"] = isTracked;
+		}
+		if (head.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 dpos))
+		{
+			obj["position"] = new Dictionary<string, float> { ["x"] = dpos.x, ["y"] = dpos.y, ["z"] = dpos.z };
+		}
+		if (head.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion drot))
+		{
+			obj["rotation_quat"] = new Dictionary<string, float> { ["x"] = drot.x, ["y"] = drot.y, ["z"] = drot.z, ["w"] = drot.w };
 		}
 		return obj;
 	}
