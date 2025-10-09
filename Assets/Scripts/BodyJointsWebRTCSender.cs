@@ -13,16 +13,14 @@ using Newtonsoft.Json;
 
 public class BodyJointsWebRTCSender : MonoBehaviour
 {
-    [Tooltip("Base HTTP URL of the signaling server.")]
+    [HideInInspector]
     public string signalingServerBaseUrl;
 
     [Tooltip("Frames per second to send; <= 0 sends every frame (fastest)")]
     public int sendFps = 0;
 
-	
-
     [Tooltip("Automatically start sending on Start()")]
-    public bool autoStart = true;
+    public bool autoStart = false;
 
 	[Tooltip("Enable additional verbose debug logging for WebRTC and networking")]
 	public bool verboseLogging = true;
